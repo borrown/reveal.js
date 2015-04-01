@@ -814,15 +814,6 @@
 			resume();
 		}
 
-		if( config.mouseWheel ) {
-			document.addEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
-			document.addEventListener( 'mousewheel', onDocumentMouseScroll, false );
-		}
-		else {
-			document.removeEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
-			document.removeEventListener( 'mousewheel', onDocumentMouseScroll, false );
-		}
-
 		// Rolling 3D links
 		if( config.rollingLinks ) {
 			enableRollingLinks();
@@ -925,6 +916,15 @@
 			}
 		}
 
+		if( config.mouseWheel ) {
+			document.addEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
+			document.addEventListener( 'mousewheel', onDocumentMouseScroll, false );
+		}
+		else {
+			document.removeEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
+			document.removeEventListener( 'mousewheel', onDocumentMouseScroll, false );
+		}
+		
 		// Listen to both touch and click events, in case the device
 		// supports both
 		var pointerEvents = [ 'touchstart', 'click' ];
@@ -979,6 +979,11 @@
 			dom.progress.removeEventListener( 'click', onProgressClicked, false );
 		}
 
+		if( config.mouseWheel ) {
+			document.removeEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
+			document.removeEventListener( 'mousewheel', onDocumentMouseScroll, false );
+		}
+		
 		[ 'touchstart', 'click' ].forEach( function( eventName ) {
 			dom.controlsLeft.forEach( function( el ) { el.removeEventListener( eventName, onNavigateLeftClicked, false ); } );
 			dom.controlsRight.forEach( function( el ) { el.removeEventListener( eventName, onNavigateRightClicked, false ); } );
